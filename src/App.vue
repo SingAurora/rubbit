@@ -1,8 +1,7 @@
 <template>
   <nav>
-    {{ $store.state.moduleA.userName }}<br/>
-    {{ $store.getters['moduleB/updateName']}}<br/>
-    <button @click="Fn">FN</button>
+    {{ $store.state.user.profile.account }}<br/>
+    <button @click="$store.commit('user/setUser', {account: 'bb'})">FN</button>
   </nav>
   <router-view/>
 </template>

@@ -1,40 +1,19 @@
 import { createStore } from 'vuex'
-
-const moduleA = {
-  state: {
-    userName: 'zs'
-  },
-  getters: {
-    updateName (state: { userName: string }) {
-      return state.userName + '!!!!'
-    }
-  },
-  mutations: {
-    updateName (state: { userName: string }) {
-      state.userName = 'moduleA !!!!!!'
-    }
-  }
-}
-const moduleB = {
-  namespaced: true,
-  state: {
-    userName: 'zs'
-  },
-  getters: {
-    updateName (state: { userName: string }) {
-      return state.userName + '!!!!'
-    }
-  },
-  mutations: {
-    updateName (state: { userName: string }) {
-      state.userName = 'moduleA !!!!!!'
-    }
-  }
-}
+import cart from './modules/cart.ts'
+import category from './modules/category.ts'
+import user from './modules/user.ts'
+import createPersistedState from 'vuex-persistedstate'
 
 export default createStore({
   modules: {
-    moduleA,
-    moduleB
-  }
+    cart,
+    category,
+    user
+  },
+  plugins: [
+    createPersistedState({
+      key: 'erabbit-client-pc-124-store',
+      paths: ['user', 'cart']
+    })
+  ]
 })
